@@ -15,29 +15,30 @@ const userSchema = new Schema(
       type: String,
       required: true,
       unique: true,
-      //mongoose validator for email
+      match: [/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, 'Please enter a valid email'],
     },
     thoughts: [
-        {
-          type: Schema.Types.ObjectId,
-          ref: 'thought',
-        },
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'thought',
+      },
     ],
     friends: [
-        {
-          type: Schema.Types.ObjectId,
-          ref: 'user',
-        },
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'user',
+      },
     ],
   },
   {
     toJSON: {
-      vitual: true,
+      virtuals: true,
     },
+    id: false,
   }
 );
 //virtial that retrieves the length of the user's friends array field on query
-postSchema.virtual('friendCount').get(function () {
+userSchema.virtual('friendCount').get(function () {
   return this.friends.length;
 });
 

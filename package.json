@@ -7,7 +7,7 @@
     "scripts": {
       "start": "node index",
       "dev": "nodemon index",
-      "seed": "node utils/seeds",
+      "seed": "node seeds/seeds",
       "heroku-postbuild": "node utils/seeds.js"
     },
     "dependencies": {

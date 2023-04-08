@@ -11,16 +11,12 @@ connection.once('open', async () => {
   // Drop existing users
   await User.deleteMany({});
 
-  // Drop existing thoughts
 
 
   // Add users to the collection and await the results
   await User.collection.insertMany(userData);
-  //Add thoughts to the collection and await the results
-
-
- 
-  // Log out the seed data to indicate what should appear in the database
+  
+// Log out the seed data to indicate what should appear in the database
   console.table(userData);
  
   console.info('Seeding complete! 🌱');

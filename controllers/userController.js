@@ -49,7 +49,7 @@ module.exports = {
       }
 
       await Thought.deleteMany({ _id: { $in: user.thoughts } });
-      res.json({ message: 'User and associated thoughts deleted!' })
+      res.json({ message: "User and associated thoughts deleted ❌"})
     } catch (err) {
       res.status(500).json(err);
     }
@@ -75,8 +75,6 @@ updateUser(req, res) {
 
   // Add a friend to a user
   addFriend(req, res) {
-    console.log('You are adding a friend!');
-    console.log(req.body);
     User.findOneAndUpdate(
       { _id: req.params.userId },
       { $addToSet: { friends: req.params.friendId } },
@@ -95,7 +93,7 @@ updateUser(req, res) {
   removeFriend(req, res) {
     User.findOneAndUpdate(
       { _id: req.params.userId },
-      { $pull: { friends: { friends : req.params.friendId } } },
+      { $pull: { friends : req.params.friendId } } ,
       { runValidators: true, new: true }
     )
       .then((user) =>
